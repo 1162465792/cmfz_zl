@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.UserDao">
+    <!--查所有-->
+    <select id="queryAll" resultType="com.baizhi.entity.User">
+       select * from t_user
+    </select>
+    <!--增-->
+    <insert id="insert" parameterType="com.baizhi.entity.User">
+        insert into t_user value (#{id},#{phoneNum},#{username},#{password},#{salt},#{province},#{city},#{nickName},#{gender},#{sign},#{headPic},#{status},#{date})
+    </insert>
+    <!--改-->
+    <update id="update" parameterType="com.baizhi.entity.User">
+        update t_user set id=#{id},phoneNum=#{phoneNum},username=#{username},password=#{password},salt=#{salt},province=#{province},city=#{city},nickName=#{nickName},gender=#{gender},sign=#{sign},headPic=#{headPic},status=#{status},date=#{date} where id=#{id}
+    </update>
+    <!--查一条-->
+    <select id="queryOne" resultType="com.baizhi.entity.User">
+        select * from t_user where id=#{id}
+    </select>
+    <!--页码使用-->
+    <select id="findByPage" resultType="com.baizhi.entity.User" parameterType="int">
+       select * from t_user limit #{start},#{rows}
+    </select>
+    <!--总条数-->
+    <select id="findTotals" resultType="long">
+       select count(id) from t_user
+    </select>
+</mapper>
